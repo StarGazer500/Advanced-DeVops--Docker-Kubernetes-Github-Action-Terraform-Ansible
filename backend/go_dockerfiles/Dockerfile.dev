@@ -1,0 +1,43 @@
+# syntax=docker/dockerfile:1
+
+# Stage 1: Build the application from source
+FROM golang:1.23 AS build-stage
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy go.mod and go.sum files first
+COPY go.mod go.sum ./
+
+# Download Go deCOPY go.mod /app/go.mod
+# COPY go.sum /app/go.aumpendencies
+RUN go mod download
+
+# Copy the rest of the application code into the container
+COPY . .
+
+# Build the Go binary for Linux
+RUN CGO_ENABLED=0 GOOS=linux go build -o /app/myapp
+
+# Stage 2: Final release image
+FROM golang:1.23 AS build-release-stage
+
+# Set working directory in the final image
+WORKDIR /app
+
+# Copy the Go binary and .env file from the build stage
+COPY --from=build-stage /app/myapp /app/myapp
+COPY .env /app/.env
+
+# Copy the entrypoint script to the container
+COPY entrypoint.dev.sh /app/entrypoint.sh
+
+# Make the entrypoint script executable
+RUN chmod +x /app/entrypoint.sh
+
+
+# Expose the port the application will listen on
+EXPOSE 8080
+
+# Set entrypoint to the custom shell script
+ENTRYPOINT ["/app/entrypoint.sh"]
