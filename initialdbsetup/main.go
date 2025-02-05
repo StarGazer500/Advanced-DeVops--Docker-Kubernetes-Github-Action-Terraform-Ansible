@@ -27,15 +27,13 @@ import (
 func main() {
 	// Initialize Gin engine
 
+
 	dbinstance, error1 := db.InitpgDb()
 	if error1!=nil{
 		log.Fatalf("Error %v occured",error1)
 	}
 
-	// if err := godotenv.Load(); err != nil {
-	// 	fmt.Println("Error loading .env file")
-
-	// }
+	
 
 	// Set a context with a timeout for database migrations
 		// ctx, cancel := context.WithTimeout(context.Background(), 1*time.Minute)

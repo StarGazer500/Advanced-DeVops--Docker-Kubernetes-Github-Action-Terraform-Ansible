@@ -50,7 +50,7 @@ func ConnectTODb(dbUser, dbPassword, dbName, dbHost, dbPort, dbSslMode string) (
 
 	// Assign the database instance to the global PG variable
 	PG := &DbInstance{Db: db}
-	fmt.Println("Successfully connected to the database!")
+	fmt.Println("Successfully connected to the database!",dbHost,db.Ping())
 
 	// Return nil if everything went well
 	return PG, nil

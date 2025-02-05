@@ -5,6 +5,7 @@ import (
 	"os"
 	"strings"
 	"time"
+     
 
 	"github.com/gin-gonic/gin"
 
@@ -158,7 +159,10 @@ func GenerateRefreshToken(claim TokenClaimStruct) (string, error) {
 // CORS middleware function definition
 func CorsMiddleware() gin.HandlerFunc {
 	// Define allowed origins as a comma-separated string
-	originsString := "http://localhost:4200"
+	
+
+	
+	originsString := "http://goapp.local"
 	var allowedOrigins []string
 	if originsString != "" {
 		// Split the originsString into individual origins and store them in allowedOrigins slice

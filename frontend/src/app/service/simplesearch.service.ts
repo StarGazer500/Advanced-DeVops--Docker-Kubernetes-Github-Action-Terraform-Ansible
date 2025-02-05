@@ -11,7 +11,7 @@ export class SimplesearchService {
 
   // Method using subscribe
   querySimpleSearchValue(value:string): Observable<any> {
-    return this.http.post<any>('http://127.0.0.1:80/map/simplesearch',{ 
+    return this.http.post<any>('http://goapp.local:80/map/simplesearch',{ 
       searchValue: value
     },);
   }

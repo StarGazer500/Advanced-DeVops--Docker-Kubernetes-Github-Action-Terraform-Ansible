@@ -11,7 +11,7 @@ export class FechfeaturelayerspecificattributeService {
 
   // Method using subscribe
   querySpecficFeatureLayerbyAttribute(featurelayer:string,attribute:string): Observable<any> {
-    return this.http.post<any>('http://127.0.0.1:80/map/searchbycolumn',{ 
+    return this.http.post<any>('http://goapp.local:80/map/searchbycolumn',{ 
       selectedLayer: featurelayer,
       selectedAttribute:attribute
 

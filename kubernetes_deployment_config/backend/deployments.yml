@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: go-app
+spec:
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: efkiworldchip/deploy:backend-dev
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8082
+        env:
+          - name: DB_HOST
+            value: "postgres-service"  # Kubernetes service name for PostgreSQL
+          
+          - name: POSTGRES_PORT
+            value: "5432"
+
+          - name: POSTGRES_DB
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secrets
+                key: POSTGRES_DB
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secrets
+                key: POSTGRES_USER
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secrets
+                key: POSTGRES_PASSWORD         
+          
+          - name: DB_SSLMODE
+            value: "disable"
+
+          - name: JWT_SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secrets
+                key: JWT_SECRET_KEY

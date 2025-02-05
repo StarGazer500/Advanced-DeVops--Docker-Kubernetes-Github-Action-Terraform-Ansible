@@ -11,6 +11,6 @@ export class FechallfeaturelayersService {
 
   // Method using subscribe
   queryAllFeatureLayers(): Observable<any> {
-    return this.http.post<any>('http://127.0.0.1:80/map/searchallfeaturelayersdata',{});
+    return this.http.post<any>('http://goapp.local:80/map/searchallfeaturelayersdata',{});
   }
 }

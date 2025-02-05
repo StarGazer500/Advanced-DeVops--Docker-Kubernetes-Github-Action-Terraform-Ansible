@@ -12,7 +12,7 @@ export class FetchspecificvalueService {
   // Method using subscribe
   queryDataBySpecificValue(featurelayer:string,attribute:string,operator:string,searchvalue:string
   ): Observable<any> {
-    return this.http.post<any>('http://127.0.0.1:80/map/makeqquery',{ 
+    return this.http.post<any>('http://goapp.local:80/map/makeqquery',{ 
       selectedLayer: featurelayer,
       selectedAttribute:attribute,
       selectedOperator:operator,

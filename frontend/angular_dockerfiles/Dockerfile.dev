@@ -13,7 +13,8 @@ WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 
 # Install dependencies with improved reliability flags
-RUN yarn install --frozen-lockfile --network-timeout=1000000
+RUN yarn add leaflet @types/leaflet && \
+    yarn install --frozen-lockfile --network-timeout=1000000
 
 # Copy the rest of the application
 COPY . .
@@ -24,7 +25,7 @@ RUN yarn build --configuration=production
 # Stage 2: Serve the application using Nginx
 FROM nginx:alpine
 
-COPY ./nginx_config/nginx.dev.conf /etc/nginx/nginx.conf
+# COPY ./nginx_config/nginx.dev.conf /etc/nginx/nginx.conf
 
 # Copy built Angular app files to Nginx HTML folder
 COPY --from=build /usr/src/app/dist/frontend/browser /usr/share/nginx/html

@@ -4,17 +4,17 @@ import (
 	"fmt"
 
 	"os"
-	"github.com/joho/godotenv"
+	// "github.com/joho/godotenv"
 
 	_ "github.com/lib/pq"
 )
 
 func InitpgDb() (*DbInstance,error) {
 
-	err := godotenv.Load()
-	if err != nil {
-		return nil, fmt.Errorf("error loading .env file %v",err)
-	}
+	// err := godotenv.Load()
+	// if err != nil {
+	// 	return nil, fmt.Errorf("error loading .env file %v",err)
+	// }
 
 	// Get the database connection parameters from the environment variables
 	dbUser := os.Getenv("POSTGRES_USER")

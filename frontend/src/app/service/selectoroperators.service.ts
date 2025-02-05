@@ -13,7 +13,7 @@ export class SelectoroperatorsService {
 
   // Method using subscribe
   querySelectorOperators(featurelayer:string,attribute:string): Observable<any> {
-    return this.http.post<any>('http://127.0.0.1:80/map/featureoperatures',{ 
+    return this.http.post<any>('http://goapp.local:80/map/featureoperatures',{ 
       selectedLayer: featurelayer,
       selectedAttribute:attribute
     },);

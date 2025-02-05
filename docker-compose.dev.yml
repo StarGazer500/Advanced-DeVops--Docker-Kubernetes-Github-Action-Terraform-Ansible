@@ -1,4 +1,4 @@
-version: '3.8'
+
 
 services:
 
@@ -23,6 +23,7 @@ services:
     restart: always
   
   initialdbsetup:
+    image: efkiworldchip/deploy:intialdbsetup-dev
     build:
       context: ./initialdbsetup
       dockerfile: ./dbmigrate_dockerfiles/Dockerfile.dev
@@ -39,11 +40,12 @@ services:
     
     
   backend:
+    image: efkiworldchip/deploy:backend-dev
     build:
       context: ./backend
       dockerfile: ./go_dockerfiles/Dockerfile.dev
-    env_file:
-      - ./backend/.env
+    # env_file:
+      # - ./backend/.env
     # volumes:
       # - media:/app/fire_outbreak_project/fire_outbreak_project/media
       # - staticfiles:/app/fire_outbreak_project/fire_outbreak_project/staticfiles
@@ -57,6 +59,7 @@ services:
 
 
   frontend:
+    image: efkiworldchip/deploy:frontend-dev
     build:
       context: ./frontend
       dockerfile: ./angular_dockerfiles/Dockerfile.dev

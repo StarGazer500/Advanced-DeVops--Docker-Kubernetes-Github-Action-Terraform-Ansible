@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: initialdbsetup
+  namespace: go-app
+spec:
+  selector:
+    matchLabels:
+      app: initialdbsetup
+  template:
+    metadata:
+      labels:
+        app: initialdbsetup
+    spec:
+      containers:
+      - name: initialdbsetup
+        image: efkiworldchip/deploy:intialdbsetup-dev
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8000
+        env:
+          - name: DB_HOST
+            value: "postgres-service"  # Kubernetes service name for PostgreSQL
+          - name: POSTGRES_PORT
+            value: "5432"
+          - name: POSTGRES_DB
+            valueFrom:
+              secretKeyRef:
+                name: db-postgres-secrets
+                key: POSTGRES_DB
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                name: db-postgres-secrets
+                key: POSTGRES_USER
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: db-postgres-secrets
+                key: POSTGRES_PASSWORD
+          - name: DB_SSLMODE
+            value: "disable"

@@ -13,7 +13,7 @@ export class SelectorfeaturlayersService {
 
   // Method using subscribe
   querySelectorFeatureLayers(): Observable<any> {
-    return this.http.get<any>('http://127.0.0.1:80/map/featurelayers');
+    return this.http.get<any>('http://goapp.local:80/map/featurelayers');
   }
 
   // Optional method to get the stored backend data
