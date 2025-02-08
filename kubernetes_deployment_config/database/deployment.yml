@@ -31,15 +31,15 @@ spec:
             secretKeyRef:
               name: db-secret-credentials
               key: POSTGRES_PASSWORD
-        # # Add PostgreSQL configuration parameters
-        # - name: POSTGRES_SHARED_BUFFERS
-        #   value: "64MB"
-        # - name: POSTGRES_MAINTENANCE_WORK_MEM
-        #   value: "64MB"
-        # - name: POSTGRES_WORK_MEM
-        #   value: "16MB"
-        # - name: POSTGRES_EFFECTIVE_CACHE_SIZE
-        #   value: "128MB"
+        # Add PostgreSQL configuration parameters
+        - name: POSTGRES_SHARED_BUFFERS
+          value: "64MB"
+        - name: POSTGRES_MAINTENANCE_WORK_MEM
+          value: "64MB"
+        - name: POSTGRES_WORK_MEM
+          value: "16MB"
+        - name: POSTGRES_EFFECTIVE_CACHE_SIZE
+          value: "128MB"
         resources:
           requests:
             memory: "512Mi"

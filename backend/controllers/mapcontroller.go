@@ -555,7 +555,7 @@ func SearchByColumn(ctx *gin.Context) {
 			// If no selectedLayer is found, return an error
 			ctx.JSON(http.StatusBadRequest, gin.H{
 				"success": false,
-				"message": "You are required to select featurelayer,attribute,operator and enter search value",
+				"message": "You are required to select featurelayer,attribute,operator and provide search value",
 			})
 			return
 		}
